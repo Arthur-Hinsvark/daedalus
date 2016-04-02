@@ -8,7 +8,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
@@ -63,62 +62,41 @@ public class Pipe {
         }	
 	}
 	
-	private String sendGet(String getUrl) {
+	private void sendGet() throws Exception {
 
-		String url = SERVER_URL + getUrl;
+		String url = SERVER_URL + "/mongo.php";
 		
-		try {
-			URL obj = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		URL obj = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-			// optional default is GET
-			con.setRequestMethod("GET");
+		// optional default is GET
+		con.setRequestMethod("GET");
 
-			//add request header
-			con.setRequestProperty("User-Agent", "CodeJava");
+		//add request header
+		con.setRequestProperty("User-Agent", "CodeJava");
 
-			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + url);
-			System.out.println("Response Code : " + responseCode);
+		int responseCode = con.getResponseCode();
+		System.out.println("\nSending 'GET' request to URL : " + url);
+		System.out.println("Response Code : " + responseCode);
 
-			BufferedReader in = new BufferedReader(
-			        new InputStreamReader(con.getInputStream()));
-			String inputLine;
-			StringBuffer response = new StringBuffer();
+		BufferedReader in = new BufferedReader(
+		        new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
 
-			while ((inputLine = in.readLine()) != null) {
-				response.append(inputLine);
-			}
-			in.close();
-
-			//print result
-			System.out.println(response.toString());
-			return response.toString();
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
 		}
-		return null;
+		in.close();
+
+		//print result
+		System.out.println(response.toString());
 
 	}
 	
 	public static void main(String[] args){
 		Pipe p = new Pipe();
-		String response = p.sendGet("/mongo.php");
-		if(response != null){
-			Print[] prints = Print.readMongoResult(response);
-			for( Print print : prints){
-				print.readPrint();
-				System.out.println("\n");
-			}
-		}
+		p.upload("C:\\Users\\Arthur\\Desktop\\creative.png");
 		
 	}
 }

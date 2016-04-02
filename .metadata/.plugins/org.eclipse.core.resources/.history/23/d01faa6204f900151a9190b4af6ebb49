@@ -112,13 +112,6 @@ public class Pipe {
 	public static void main(String[] args){
 		Pipe p = new Pipe();
 		String response = p.sendGet("/mongo.php");
-		if(response != null){
-			Print[] prints = Print.readMongoResult(response);
-			for( Print print : prints){
-				print.readPrint();
-				System.out.println("\n");
-			}
-		}
 		
 	}
 }
