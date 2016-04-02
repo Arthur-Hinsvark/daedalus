@@ -116,7 +116,6 @@ public class Pipe {
 			Print[] prints = Print.readMongoResult(response);
 			for( Print print : prints){
 				print.readPrint();
-				System.out.println("\n");
 			}
 		}
 		

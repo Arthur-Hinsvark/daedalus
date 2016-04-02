@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Print {
+	String name, id, location, owner, price, uploaded;
+	int views, downloads, rating;
+	
+	public Print(String id, String name, String location, String owner, String price, String uploaded, int views, int downloads, int rating){
+		this.name = name;
+		this.downloads = downloads;
+		this.id = id;
+		this.location = location;
+		this.owner = owner;
+		this.price = price;
+		this.uploaded = uploaded;
+		this.views = views;
+		this.rating = rating;
+	}
+	
+	public Print(String dataString){
+		System.out.println(dataString);
+		String[] pairs = dataString.split(",");
+		for(String pair : pairs){
+			System.out.println(pair);
+			String[] both = pair.split(":", 1);
+			switch(both[0].toLowerCase()){
+				case "_id":
+					this.id = both[1];
+					break;
+				case "name":
+					this.name = both[1];
+					break;
+				case "downloads":
+					this.downloads = Integer.parseInt(both[1]);
+					break;
+				case "location":
+					this.location = both[1];
+					break;
+				case "owner":
+					this.owner = both[1];
+					break;
+				case "price":
+					this.price = both[1];
+					break;
+				case "uploaded":
+					this.uploaded = both[1];
+					break;
+				case "views":
+					this.views = Integer.parseInt(both[1]);
+					break;
+				case "rating":
+					this.rating = Integer.parseInt(both[1]);
+					break;
+				default:
+									
+			}
+		}
+	}
+	
+	public void readPrint(){
+		System.out.println("id: " + this.id);
+		System.out.println("name: " + this.name);
+		System.out.println("downloads: " + this.downloads);
+	    System.out.println("location: " + this.location);
+	    System.out.println("owner: " + this.owner);
+		System.out.println("price: " + this.price);
+		System.out.println("uploaded: " + this.uploaded);
+	    System.out.println("views: " + this.views);
+	    System.out.println("rating: " + this.rating);
+	}
+	
+}

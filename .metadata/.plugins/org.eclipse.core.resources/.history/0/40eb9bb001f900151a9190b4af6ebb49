@@ -1,0 +1,33 @@
+
+public class Print {
+	String name, id, location, owner, price, uploaded;
+	int views, downloads, rating;
+	
+	public Print(String id, String name, String location, String owner, String price, String uploaded, int views, int downloads, int rating){
+		this.name = name;
+		this.downloads = downloads;
+		this.id = id;
+		this.location = location;
+		this.owner = owner;
+		this.price = price;
+		this.uploaded = uploaded;
+		this.views = views;
+		this.rating = rating;
+	}
+	
+	public Print(String dataString){
+		String[] pairs = dataString.split(",");
+		
+		
+		this.name = name;
+		this.downloads = downloads;
+		this.id = id;
+		this.location = location;
+		this.owner = owner;
+		this.price = price;
+		this.uploaded = uploaded;
+		this.views = views;
+		this.rating = rating;
+	}
+	
+}

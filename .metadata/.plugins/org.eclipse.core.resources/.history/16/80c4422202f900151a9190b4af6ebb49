@@ -63,9 +63,9 @@ public class Pipe {
         }	
 	}
 	
-	private String sendGet(String getUrl) {
+	private void sendGet() {
 
-		String url = SERVER_URL + getUrl;
+		String url = SERVER_URL + "/mongo.php";
 		
 		try {
 			URL obj = new URL(url);
@@ -93,8 +93,8 @@ public class Pipe {
 
 			//print result
 			System.out.println(response.toString());
-			return response.toString();
-			
+			String[] prints = response.toString().split("<br /><br />");
+			Print print = new Print(prints[0]);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,20 +105,12 @@ public class Pipe {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
 
 	}
 	
 	public static void main(String[] args){
 		Pipe p = new Pipe();
-		String response = p.sendGet("/mongo.php");
-		if(response != null){
-			Print[] prints = Print.readMongoResult(response);
-			for( Print print : prints){
-				print.readPrint();
-				System.out.println("\n");
-			}
-		}
+		p.sendGet();
 		
 	}
 }
